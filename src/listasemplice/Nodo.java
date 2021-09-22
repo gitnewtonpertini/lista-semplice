@@ -1,6 +1,6 @@
 /*
- * Esercizio di pag 139-156 del libri di testo (Corso di Informatica -
- * Formichi - Meini 2)
+ * Gestione di una lista semplice (Corso di Informatica - Formichi - Meini 2)
+ * 
  */
 package listasemplice;
 
@@ -50,6 +50,10 @@ public class Nodo {
     public String visualizzaNodo() {
         return "Info: " + info + "\n\r";
     }
+
+	public String getInfo() {
+		return this.info;
+	}
 
     
 }

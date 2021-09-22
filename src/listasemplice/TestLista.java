@@ -1,6 +1,6 @@
 /*
- * Esercizio di pag 139-156 del libri di testo (Corso di Informatica -
- * Formichi - Meini 2)
+ * Gestione di una lista semplice (Corso di Informatica - Formichi - Meini 2)
+ * 
  */
 package listasemplice;
 
@@ -37,7 +37,10 @@ public class TestLista {
         System.out.println(lista.visualizzaLista());
         // Metodo rapido di costruzione di una lista di N elementi, con valori casuali
         Lista lista2 = new Lista(100);
-        System.out.println(lista2.visualizzaLista());
+        //System.out.println(lista2.visualizzaLista());
+        // Ricerca nodo per chiave
+        Nodo p = lista.cercaNodo("settimo");
+        System.out.println(p != null ? "Trovato! " + p.visualizzaNodo() : "Nodo non trovato");
     }
     
 }

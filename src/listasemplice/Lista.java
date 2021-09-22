@@ -1,6 +1,6 @@
 /*
- * Esercizio di pag 139-156 del libri di testo (Corso di Informatica -
- * Formichi - Meini 2)
+ * Gestione di una lista semplice (Corso di Informatica - Formichi - Meini 2)
+ * 
  */
 package listasemplice;
 
@@ -65,6 +65,24 @@ public class Lista {
         }
     }
     
+    // Cerca il nodo corrispondente alla parola chiave restituendo il riferimento
+    // al nodo precedente
+    Nodo cercaNodo(String chiave) {
+        Nodo p = this.testa;
+        Nodo pp = this.testa;
+        if ( p == null )
+        	return null;
+        while ( p != null && !p.getInfo().equals(chiave) ) {
+            pp = p;
+        	p = p.getSuccessivo();
+        }
+        if ( p != null)
+        	return pp;
+        else
+        	return null;
+    }
+    
+    // Cerca il nodo corrispondente alla posizione data
     Nodo cercaNodo(int pos) {
         int i = 1;
         Nodo p = this.testa;
