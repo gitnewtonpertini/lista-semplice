@@ -177,6 +177,17 @@ public class Lista {
         return "N.ro nodi: " + this.numeroNodi + "\r\n" + str;
     }
     
+    // Versione ricorsiva
+    public void visualizzaListaRicorsiva(Nodo p) {
+    
+    	if (p == null)
+    		return;
+    	else {
+    			System.out.println(p.getInfo());
+    			visualizzaListaRicorsiva(p.getSuccessivo());
+    		}
+    }
+    
     // Eliminazione del nodo di testa
     public void eliminaInTesta() {
         if ( this.testa != null ) {
