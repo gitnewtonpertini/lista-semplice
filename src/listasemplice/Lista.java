@@ -93,6 +93,17 @@ public class Lista {
 		else
 			return cercaNodoRicorsiva(chiave, p.getSuccessivo());
 	}
+	
+	// Ricerca ricorsiva del massimo (ordinamento lessicografico)
+	String cercaMassimoRicorsiva(String max, Nodo p) {
+				
+		if (p == null)
+			return max;
+		else
+			if (p.getInfo().compareTo(max) > 0)
+				max = p.getInfo();
+			return cercaMassimoRicorsiva(max, p.getSuccessivo());
+	}
 
 	// Cerca il nodo corrispondente alla posizione data
 	Nodo cercaNodo(int pos) {

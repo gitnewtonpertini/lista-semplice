@@ -18,18 +18,18 @@ public class TestLista {
     	Nodo p;
     	Lista lista = new Lista();
     	
-        lista.inserisciInTesta(new Nodo("primo"));
-        lista.inserisciInTesta(new Nodo("secondo"));
-        lista.inserisciInTesta(new Nodo("terzo"));
-        lista.inserisciInTesta(new Nodo("quarto"));
-        lista.inserisciInTesta(new Nodo("quinto"));
+        lista.inserisciInTesta(new Nodo("alce"));
+        lista.inserisciInTesta(new Nodo("tasso"));
+        lista.inserisciInTesta(new Nodo("daino"));
+        lista.inserisciInTesta(new Nodo("lupo"));
+        lista.inserisciInTesta(new Nodo("orso"));
         System.out.println("----- INSERIMENTO IN TESTA");
         System.out.println(lista.visualizzaLista());
 
-        lista.inserisciInCoda(new Nodo("sesto"), true);
-        lista.inserisciInCoda(new Nodo("settimo"), true);
-        lista.inserisciInCoda(new Nodo("ottavo"), false);
-        lista.inserisciInCoda(new Nodo("nono"), false);
+        lista.inserisciInCoda(new Nodo("lince"), true);
+        lista.inserisciInCoda(new Nodo("martora"), true);
+        lista.inserisciInCoda(new Nodo("cervo"), false);
+        lista.inserisciInCoda(new Nodo("scoiattolo"), false);
         System.out.println("----- INSERIMENTO IN CODA");
         System.out.println(lista.visualizzaLista());
 
@@ -41,7 +41,6 @@ public class TestLista {
         System.out.println(lista.visualizzaLista());
         lista.inserisciInPosizione(new Nodo("quinto bis"), 5-1);
         System.out.println(lista.visualizzaLista());
-        
         
         System.out.println("----- ELIMINAZIONE IN TESTA");
         System.out.println(lista.visualizzaLista());
@@ -73,6 +72,11 @@ public class TestLista {
         
         System.out.println("----- VISUALIZZAZIONE RICORSIVA");
         System.out.println(lista.visualizzaListaRicorsiva(lista.getTesta()));
+        
+        // Ricerca del massimo (ricorsiva)
+        System.out.println("----- RICERCA MASSIMO (RICORSIVA)");
+        System.out.println(lista.visualizzaLista());
+        System.out.println("Massimo: " + lista.cercaMassimoRicorsiva(lista.getTesta().getInfo(), lista.getTesta()));              
         
     }
     
