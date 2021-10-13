@@ -33,13 +33,13 @@ public class TestLista {
         System.out.println("----- INSERIMENTO IN CODA");
         System.out.println(lista.visualizzaLista());
 
-        System.out.println("----- RICERCA NODO");
-        System.out.println("Posizione 5: " + lista.cercaNodo(5).visualizzaNodo());
+        System.out.println("----- RICERCA NODO PER POSIZIONE");
+        System.out.println("Posizione 5: " + lista.cercaNodo(0).visualizzaNodo());
         System.out.println(lista.visualizzaLista());
 
         System.out.println("----- INSERIMENTO IN POSIZIONE");
         System.out.println(lista.visualizzaLista());
-        lista.inserisciInPosizione(new Nodo("quinto bis"), 5-1);
+        lista.inserisciInPosizione(new Nodo("ghiro"), 5-1);
         System.out.println(lista.visualizzaLista());
         
         System.out.println("----- ELIMINAZIONE IN TESTA");
@@ -77,7 +77,28 @@ public class TestLista {
         System.out.println("----- RICERCA MASSIMO (RICORSIVA)");
         System.out.println(lista.visualizzaLista());
         System.out.println("Massimo: " + lista.cercaMassimoRicorsiva(lista.getTesta().getInfo(), lista.getTesta()));              
+
+        // Shuffle: scambio nodi
+        System.out.println("----- SHUFFLE: SCAMBIO NODI");
+        System.out.println(lista.visualizzaLista());
+        lista.shuffle(2,6);
+        System.out.println(lista.visualizzaLista());
         
+        // Ricerca sottolista
+        System.out.println("----- VERIFICA SOTTOLISTA");
+    	Lista sottoLista = new Lista();
+    	sottoLista.inserisciInTesta(new Nodo("alcex"));
+    	//sottoLista.inserisciInTesta(new Nodo("ghiro"));
+    	//sottoLista.inserisciInTesta(new Nodo("tasso"));
+        System.out.println(lista.visualizzaLista());
+        System.out.println(sottoLista.visualizzaLista());
+
+        Nodo start = lista.cercaNodo(sottoLista.getTesta().getInfo());
+        if (start != null) {
+        	System.out.println(start.getSuccessivo().visualizzaNodo());
+        	System.out.println(lista.isSottolista(start.getSuccessivo(), sottoLista.getTesta()));
+        }
+		
     }
     
 }

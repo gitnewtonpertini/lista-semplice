@@ -93,7 +93,23 @@ public class Lista {
 		else
 			return cercaNodoRicorsiva(chiave, p.getSuccessivo());
 	}
-	
+		
+	// Cerca il nodo corrispondente alla posizione data
+	Nodo cercaNodo(int pos) {
+		
+		int i = 1;
+		Nodo p = this.testa;
+		// TODO: se la lista è vuota genera eccezione!!
+		while (p != null && i < pos) {
+			p = p.getSuccessivo();
+			i++;
+		}
+		// p è il nodo (riferimento) corrispondente alla posizione
+		// desiderata oppure all'ultimo nodo (potrebbero verificarsi
+		// entrambe le situazioni).
+		return p;
+	}
+
 	// Ricerca ricorsiva del massimo (ordinamento lessicografico)
 	String cercaMassimoRicorsiva(String max, Nodo p) {
 				
@@ -104,22 +120,7 @@ public class Lista {
 				max = p.getInfo();
 			return cercaMassimoRicorsiva(max, p.getSuccessivo());
 	}
-
-	// Cerca il nodo corrispondente alla posizione data
-	Nodo cercaNodo(int pos) {
-		int i = 1;
-		Nodo p = this.testa;
-		// TODO: se la lista è vuota genera eccezione!!
-		while (p.getSuccessivo() != null && i < pos) {
-			p = p.getSuccessivo();
-			i++;
-		}
-		// p è il nodo (riferimento) corrispondente alla posizione
-		// desiderata oppure all'ultimo nodo (potrebbero verificarsi
-		// entrambe le situazioni).
-		return p;
-	}
-
+	
 	// Inserisce un nodo nella posizione indicata dal parametro
 	// se la posizione è un valore minore di zero, allora inserisce in testa
 	// se la posizione è maggiore del numero di elementi della lista, allora
@@ -195,7 +196,7 @@ public class Lista {
 		String str = "";
 		int i = 1;
 		while (p != null) {
-			str += " " + p.getInfo();
+			str += i + "-" + p.getInfo() + " ";
 			p = p.getSuccessivo();
 			i++;
 		}
@@ -236,5 +237,34 @@ public class Lista {
 
 	public Nodo getTesta() {
 		return this.testa;
+	}
+
+	// Scambia due nodi di posizione data
+	void shuffle(int h, int k) {
+		Nodo pph, ph, ppk, pk, tpk;
+		
+		pph = cercaNodo(h-1);
+		ph = pph.getSuccessivo();
+		ppk = cercaNodo(k-1);
+		pk = ppk.getSuccessivo();
+		
+		System.out.println(ph.getInfo());
+		System.out.println(pk.getInfo());
+		
+		pph.setSuccessivo(pk);
+		tpk = pk.getSuccessivo();
+		pk.setSuccessivo(ph.getSuccessivo());
+		
+		ppk.setSuccessivo(ph);
+		ph.setSuccessivo(tpk);
+	}
+	
+	// Verifica se una data lista è una sottolista
+	boolean isSottolista(Nodo start, Nodo testaSottolista) {
+		
+		if (testaSottolista == null)
+			return true;
+		
+		return start.getInfo().equals(testaSottolista.getInfo()) && isSottolista(start.getSuccessivo(), testaSottolista.getSuccessivo());		
 	}
 }
