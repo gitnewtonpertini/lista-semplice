@@ -98,7 +98,24 @@ public class TestLista {
         	System.out.println(start.getSuccessivo().visualizzaNodo());
         	System.out.println(lista.isSottolista(start.getSuccessivo(), sottoLista.getTesta()));
         }
-		
+        // Merge liste
+        System.out.println("----- MERGE LISTE");
+    	Lista l1 = new Lista();
+        l1.inserisciInCoda(new Nodo("aaa"), true);
+        l1.inserisciInCoda(new Nodo("bbb"), true);
+        l1.inserisciInCoda(new Nodo("ccc"), true);
+        l1.inserisciInCoda(new Nodo("lll"), true);
+        l1.inserisciInCoda(new Nodo("mmm"), true);
+        
+    	Lista l2 = new Lista();
+        l2.inserisciInCoda(new Nodo("fff"), true);
+        l2.inserisciInCoda(new Nodo("ggg"), true);
+        l2.inserisciInCoda(new Nodo("hhh"), true);
+        
+        System.out.println(l1.visualizzaLista());
+        System.out.println(l2.visualizzaLista());
+        System.out.println(Lista.visualizzaLista2(Lista.merge(l1.getTesta(), l2.getTesta())));
+
     }
     
 }

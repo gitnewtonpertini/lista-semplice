@@ -68,7 +68,7 @@ public class Lista {
 
 	// Cerca il nodo corrispondente alla parola chiave restituendo il riferimento
 	// al nodo precedente
-	Nodo cercaNodo(String chiave) {
+	public Nodo cercaNodo(String chiave) {
 		Nodo p = this.testa;
 		Nodo pp = this.testa;
 		if (p == null)
@@ -85,7 +85,7 @@ public class Lista {
 
 	// Cerca il nodo corrispondente alla parola chiave restituendo il riferimento
 	// al nodo precedente
-	Nodo cercaNodoRicorsiva(String chiave, Nodo p) {
+	public Nodo cercaNodoRicorsiva(String chiave, Nodo p) {
 		if (p == null)
 			return null;
 		if (p.getInfo().equals(chiave))
@@ -95,7 +95,7 @@ public class Lista {
 	}
 		
 	// Cerca il nodo corrispondente alla posizione data
-	Nodo cercaNodo(int pos) {
+	public Nodo cercaNodo(int pos) {
 		
 		int i = 1;
 		Nodo p = this.testa;
@@ -240,7 +240,7 @@ public class Lista {
 	}
 
 	// Scambia due nodi di posizione data
-	void shuffle(int h, int k) {
+	public void shuffle(int h, int k) {
 		Nodo pph, ph, ppk, pk, tpk;
 		
 		pph = cercaNodo(h-1);
@@ -260,11 +260,42 @@ public class Lista {
 	}
 	
 	// Verifica se una data lista è una sottolista
-	boolean isSottolista(Nodo start, Nodo testaSottolista) {
+	public boolean isSottolista(Nodo start, Nodo testaSottolista) {
 		
 		if (testaSottolista == null)
 			return true;
 		
 		return start.getInfo().equals(testaSottolista.getInfo()) && isSottolista(start.getSuccessivo(), testaSottolista.getSuccessivo());		
+	}
+	
+	public static Nodo merge(Nodo pL1, Nodo pL2) {
+		
+		if (pL1 == null)
+			return pL2;
+		
+		if (pL2 == null)
+			return pL1;
+					
+		if (pL1.getInfo().compareTo(pL2.getInfo()) < 0) {
+			pL1.setSuccessivo(merge(pL1.getSuccessivo(), pL2));
+			return pL1;
+		}
+		else {
+			pL2.setSuccessivo(merge(pL1, pL2.getSuccessivo()));
+			return pL2;
+		}
+	}
+	
+	public static String visualizzaLista2(Nodo testa) {
+
+		Nodo p = testa;
+		String str = "";
+		int i = 1;
+		while (p != null) {
+			str += i + "-" + p.getInfo() + " ";
+			p = p.getSuccessivo();
+			i++;
+		}
+		return str;
 	}
 }
