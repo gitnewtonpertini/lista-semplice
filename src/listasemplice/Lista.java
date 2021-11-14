@@ -5,8 +5,8 @@
 package listasemplice;
 
 /**
+ * @author gianfranco
  *
- * @author Admin
  */
 public class Lista {
 	private Nodo testa;
@@ -93,10 +93,10 @@ public class Lista {
 		else
 			return cercaNodoRicorsiva(chiave, p.getSuccessivo());
 	}
-		
+
 	// Cerca il nodo corrispondente alla posizione data
 	public Nodo cercaNodo(int pos) {
-		
+
 		int i = 1;
 		Nodo p = this.testa;
 		// TODO: se la lista è vuota genera eccezione!!
@@ -112,15 +112,14 @@ public class Lista {
 
 	// Ricerca ricorsiva del massimo (ordinamento lessicografico)
 	String cercaMassimoRicorsiva(String max, Nodo p) {
-				
+
 		if (p == null)
 			return max;
-		else
-			if (p.getInfo().compareTo(max) > 0)
-				max = p.getInfo();
-			return cercaMassimoRicorsiva(max, p.getSuccessivo());
+		else if (p.getInfo().compareTo(max) > 0)
+			max = p.getInfo();
+		return cercaMassimoRicorsiva(max, p.getSuccessivo());
 	}
-	
+
 	// Inserisce un nodo nella posizione indicata dal parametro
 	// se la posizione è un valore minore di zero, allora inserisce in testa
 	// se la posizione è maggiore del numero di elementi della lista, allora
@@ -239,53 +238,84 @@ public class Lista {
 		return this.testa;
 	}
 
-	// Scambia due nodi di posizione data
+	// Scambia due nodi di posizione data: h, k
 	public void shuffle(int h, int k) {
 		Nodo pph, ph, ppk, pk, tpk;
-		
-		pph = cercaNodo(h-1);
+
+		pph = cercaNodo(h - 1);
 		ph = pph.getSuccessivo();
-		ppk = cercaNodo(k-1);
+		ppk = cercaNodo(k - 1);
 		pk = ppk.getSuccessivo();
-		
+
 		System.out.println(ph.getInfo());
 		System.out.println(pk.getInfo());
-		
+
 		pph.setSuccessivo(pk);
 		tpk = pk.getSuccessivo();
 		pk.setSuccessivo(ph.getSuccessivo());
-		
+
 		ppk.setSuccessivo(ph);
 		ph.setSuccessivo(tpk);
 	}
-	
-	// Verifica se una data lista è una sottolista
-	public boolean isSottolista(Nodo start, Nodo testaSottolista) {
-		
-		if (testaSottolista == null)
+
+	/*
+	 * Metodo statico: non opera (non potrebbe!) su proprietà dell'oggetto.
+	 * 
+	 * L1 e L2 sono due liste istanziate esternamente (nel main). Verifica se una
+	 * data lista (L2) è una sottolista di (L1)
+	 * 
+	 * S(L1(i),L2(j)): boolean {
+	 * 		se L2(j) == null
+	 * 			return true
+	 * 		se L1(i) == null
+	 * 			return false
+	 * 		
+	 * 		return (L1(i) == L2(j)) && S(L1(i+1),L2(j+1)
+	 * }
+	 */
+	public static boolean isSottolista(Nodo pL1, Nodo pL2) {
+
+		if (pL2 == null)
 			return true;
-		
-		return start.getInfo().equals(testaSottolista.getInfo()) && isSottolista(start.getSuccessivo(), testaSottolista.getSuccessivo());		
+		if (pL1 == null)
+			return false;
+
+		return pL1.getInfo().equals(pL2.getInfo()) && isSottolista(pL1.getSuccessivo(), pL2.getSuccessivo());
 	}
-	
+
+	/*
+	 * Esegue il merge di due liste ordinate (ricorsiva) Metodo statico: non opera
+	 * (non potrebbe!) su proprietà dell'oggetto, L1 e L2 sono due liste istanziate
+	 * esternamente (nel main).
+	 * 
+	 * M(L1(i),L2(j)): L {
+	 * 		se L1(i) == null 
+	 * 			return resto di L2 
+	 * 		se L2(j) == null
+	 * 			return resto di L1
+	 * 
+	 * 		se L1(i) < L2(j) 
+	 * 			return L1(i)+M(L1(i+1),L2(j)) 
+	 * 		altrimenti return L2(j)+M(L1(i),L2(j+1)) 
+	 * }
+	 */
 	public static Nodo merge(Nodo pL1, Nodo pL2) {
-		
+
 		if (pL1 == null)
 			return pL2;
-		
+
 		if (pL2 == null)
 			return pL1;
-					
+
 		if (pL1.getInfo().compareTo(pL2.getInfo()) < 0) {
 			pL1.setSuccessivo(merge(pL1.getSuccessivo(), pL2));
 			return pL1;
-		}
-		else {
+		} else {
 			pL2.setSuccessivo(merge(pL1, pL2.getSuccessivo()));
 			return pL2;
 		}
 	}
-	
+
 	public static String visualizzaLista2(Nodo testa) {
 
 		Nodo p = testa;

@@ -87,9 +87,13 @@ public class TestLista {
         // Ricerca sottolista
         System.out.println("----- VERIFICA SOTTOLISTA");
     	Lista sottoLista = new Lista();
-    	sottoLista.inserisciInTesta(new Nodo("alcex"));
-    	//sottoLista.inserisciInTesta(new Nodo("ghiro"));
-    	//sottoLista.inserisciInTesta(new Nodo("tasso"));
+    	sottoLista.inserisciInTesta(new Nodo("alce"));
+    	sottoLista.inserisciInTesta(new Nodo("ghiro"));
+    	sottoLista.inserisciInTesta(new Nodo("tasso"));
+    	// Questa da false (termina prima L1)
+    	//sottoLista.inserisciInTesta(new Nodo("gufo"));
+    	//sottoLista.inserisciInTesta(new Nodo("cervo"));
+    	//sottoLista.inserisciInTesta(new Nodo("martora"));
         System.out.println(lista.visualizzaLista());
         System.out.println(sottoLista.visualizzaLista());
 
