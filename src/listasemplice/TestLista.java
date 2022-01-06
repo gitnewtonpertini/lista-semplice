@@ -119,6 +119,58 @@ public class TestLista {
         System.out.println(l1.visualizzaLista());
         System.out.println(l2.visualizzaLista());
         System.out.println(Lista.visualizzaLista2(Lista.merge(l1.getTesta(), l2.getTesta())));
+        
+        // Verifica se gli elementi della lista hanno solo due valori ripetuti alternativamente: 
+        // A B A B A B A B ...
+        System.out.println("----- VERIFICA VALORI ALTERNI");
+    	Lista l3 = new Lista();
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("X"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        
+        System.out.println(l3.visualizzaLista());     
+        System.out.println(l3.verificaValoriAlterni(l3.getTesta()) ? "ALTERNI" : "NON ALTERNI");     
+        System.out.println(l3.verificaValoriAlterniRicorsiva(l3.getTesta(), true) ? "ALTERNI" : "NON ALTERNI");  
+        
+        
+    	// Conta il numero di nodi della lista in modo ricorsivo
+        System.out.println("----- CONTA NODI LISTA");
+        System.out.println(l3.visualizzaLista() + "    N.ro nodi: " + l3.contaNodiRicorsiva(l3.getTesta()));
+
+        System.out.println("----- VERIFICA ESISTENZA DUE SOTTOSTRINGHE LA CUI UNIONE DIA UNA STRINGA DATA");
+    	Lista l4 = new Lista();
+        l4.inserisciInCoda(new Nodo("GATTO"), true);
+        l4.inserisciInCoda(new Nodo("CANE"), true);
+        l4.inserisciInCoda(new Nodo("GAT"), true);
+        l4.inserisciInCoda(new Nodo("PULCE"), true);
+        l4.inserisciInCoda(new Nodo("CRICETO"), true);
+        l4.inserisciInCoda(new Nodo("PESCE"), true);
+        l4.inserisciInCoda(new Nodo("CANARINO"), true);
+        l4.inserisciInCoda(new Nodo("TO"), true);
+        l4.inserisciInCoda(new Nodo("CRI"), true);
+        l4.inserisciInCoda(new Nodo("GUFO"), true);
+        l4.inserisciInCoda(new Nodo("RANA"), true);
+        l4.inserisciInCoda(new Nodo("CETO"), true);
+        l4.inserisciInCoda(new Nodo("OCA"), true);
+        System.out.println(l4.cercaUnioneSottostringhe(l4.getTesta(), "CRICETO") ? "ESISTONO" : "NON ESISTONO");
+
+        
 
     }
     

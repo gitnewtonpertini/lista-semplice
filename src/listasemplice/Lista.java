@@ -328,4 +328,76 @@ public class Lista {
 		}
 		return str;
 	}
+
+    // Verifica se gli elementi della lista hanno solo due valori ripetuti alternativamente: 
+    // A B A B A B A B ...
+	public boolean verificaValoriAlterni(Nodo testa) {
+
+		boolean alterni = true;
+		Nodo p = testa;
+		while (p.getSuccessivo() != null && alterni) {
+			alterni = alterni &&
+				(
+					// Possono essere solo A o B
+					(
+						(p.getInfo().equals("A") && p.getSuccessivo().getInfo().equals("B")) ||
+						(p.getInfo().equals("B") && p.getSuccessivo().getInfo().equals("A"))
+					)
+					// Devono essere alterni
+					&& !(p.getInfo().equals(p.getSuccessivo().getInfo()))
+				);
+			p = p.getSuccessivo();
+		}
+		
+		return alterni;
+	}
+	
+	// Versione ricorsiva
+	public boolean verificaValoriAlterniRicorsiva(Nodo p, boolean alterni) {
+
+	if (p.getSuccessivo() == null)
+		// Fine lista, restituisco il valore del parametro "alterni"
+		return alterni;
+	else
+		alterni = alterni &&
+				(
+					// Possono essere solo A o B
+					(
+						(p.getInfo().equals("A") && p.getSuccessivo().getInfo().equals("B")) ||
+						(p.getInfo().equals("B") && p.getSuccessivo().getInfo().equals("A"))
+					)
+					// Devono essere alterni
+					&& !(p.getInfo().equals(p.getSuccessivo().getInfo()))
+				);
+		// L'invocazione ricorsiva serve solo per avanzare sulla lista aggiornando il valore 
+		// del parametro "alterni" con il valore del nuovo (successivo) nodo
+		System.out.println(p.getInfo() + " " + alterni);
+		return verificaValoriAlterniRicorsiva(p.getSuccessivo(), alterni);
+
+	}
+	
+	// Conta il numero di nodi della lista in modo ricorsivo
+	public int contaNodiRicorsiva(Nodo p) {
+		if (p == null)
+			return 0;
+		else
+			return 1 + contaNodiRicorsiva(p.getSuccessivo());
+	}
+
+	public boolean cercaUnioneSottostringhe(Nodo testa, String parola) {
+		
+		Nodo p1, p2;
+		p1 = testa;
+		while (p1 != null) { 
+			p2 = p1.getSuccessivo();
+			while (p2 != null) {
+				if (parola.equals(p1.getInfo() + p2.getInfo())) 
+					return true;
+				p2 = p2.getSuccessivo();
+			}
+			p1 = p1.getSuccessivo();
+		}
+						
+		return false;
+	}
 }
