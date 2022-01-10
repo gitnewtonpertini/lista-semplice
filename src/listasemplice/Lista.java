@@ -337,43 +337,46 @@ public class Lista {
 		Nodo p = testa;
 		while (p.getSuccessivo() != null && alterni) {
 			alterni = alterni &&
-				(
-					// Possono essere solo A o B
+					// Possono essere A B o B A
 					(
 						(p.getInfo().equals("A") && p.getSuccessivo().getInfo().equals("B")) ||
 						(p.getInfo().equals("B") && p.getSuccessivo().getInfo().equals("A"))
-					)
-					// Devono essere alterni
-					&& !(p.getInfo().equals(p.getSuccessivo().getInfo()))
-				);
+					);
 			p = p.getSuccessivo();
 		}
-		
 		return alterni;
 	}
 	
+	
 	// Versione ricorsiva
-	public boolean verificaValoriAlterniRicorsiva(Nodo p, boolean alterni) {
-
-	if (p.getSuccessivo() == null)
-		// Fine lista, restituisco il valore del parametro "alterni"
-		return alterni;
-	else
-		alterni = alterni &&
-				(
-					// Possono essere solo A o B
-					(
-						(p.getInfo().equals("A") && p.getSuccessivo().getInfo().equals("B")) ||
-						(p.getInfo().equals("B") && p.getSuccessivo().getInfo().equals("A"))
-					)
-					// Devono essere alterni
-					&& !(p.getInfo().equals(p.getSuccessivo().getInfo()))
-				);
-		// L'invocazione ricorsiva serve solo per avanzare sulla lista aggiornando il valore 
-		// del parametro "alterni" con il valore del nuovo (successivo) nodo
-		System.out.println(p.getInfo() + " " + alterni);
-		return verificaValoriAlterniRicorsiva(p.getSuccessivo(), alterni);
-
+	public boolean verificaValoriAlterniRicorsiva(Nodo prec, Nodo succ) {
+		if (succ == null)
+			return true;
+		else
+			return (
+				(prec.getInfo().equals("A") && succ.getInfo().equals("B")) ||
+				(prec.getInfo().equals("B") && succ.getInfo().equals("A"))
+			) 
+			&& verificaValoriAlterniRicorsiva(succ, succ.getSuccessivo());
+	}
+	
+	// Versione ricorsiva 2
+	public boolean verificaValoriAlterniRicorsiva2(Nodo p, boolean alterni) {
+		if (p.getSuccessivo() == null)
+			// Fine lista, restituisco il valore del parametro "alterni"
+			return alterni;
+		else {
+			alterni = alterni &&
+						// Possono essere solo A o B
+						(
+							(p.getInfo().equals("A") && p.getSuccessivo().getInfo().equals("B")) ||
+							(p.getInfo().equals("B") && p.getSuccessivo().getInfo().equals("A"))
+						);
+			// L'invocazione ricorsiva serve solo per avanzare sulla lista aggiornando il valore 
+			// del parametro "alterni" con il valore del nuovo (successivo) nodo
+			//System.out.println(p.getInfo() + " " + alterni);
+			return verificaValoriAlterniRicorsiva2(p.getSuccessivo(), alterni);
+		}
 	}
 	
 	// Conta il numero di nodi della lista in modo ricorsivo

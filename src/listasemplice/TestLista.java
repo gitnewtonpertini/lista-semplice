@@ -127,11 +127,11 @@ public class TestLista {
         l3.inserisciInCoda(new Nodo("A"), true);
         l3.inserisciInCoda(new Nodo("B"), true);
         l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
+        l3.inserisciInCoda(new Nodo("B"), true);
+        l3.inserisciInCoda(new Nodo("A"), true);
         l3.inserisciInCoda(new Nodo("X"), true);
-        l3.inserisciInCoda(new Nodo("A"), true);
-        l3.inserisciInCoda(new Nodo("B"), true);
-        l3.inserisciInCoda(new Nodo("A"), true);
-        l3.inserisciInCoda(new Nodo("B"), true);
         l3.inserisciInCoda(new Nodo("A"), true);
         l3.inserisciInCoda(new Nodo("B"), true);
         l3.inserisciInCoda(new Nodo("A"), true);
@@ -145,8 +145,9 @@ public class TestLista {
         l3.inserisciInCoda(new Nodo("A"), true);
         
         System.out.println(l3.visualizzaLista());     
-        System.out.println(l3.verificaValoriAlterni(l3.getTesta()) ? "ALTERNI" : "NON ALTERNI");     
-        System.out.println(l3.verificaValoriAlterniRicorsiva(l3.getTesta(), true) ? "ALTERNI" : "NON ALTERNI");  
+        System.out.println("Iterativo: " + (l3.verificaValoriAlterni(l3.getTesta()) ? "ALTERNI" : "NON ALTERNI"));     
+        System.out.println("Ricorsivo: " + (l3.verificaValoriAlterniRicorsiva(l3.getTesta(), l3.getTesta().getSuccessivo()) ? "ALTERNI" : "NON ALTERNI"));  
+        System.out.println("Ricorsivo 2: " + (l3.verificaValoriAlterniRicorsiva2(l3.getTesta(), true) ? "ALTERNI" : "NON ALTERNI"));  
         
         
     	// Conta il numero di nodi della lista in modo ricorsivo
